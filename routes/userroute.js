@@ -95,5 +95,14 @@ router.delete('/:id', async (req, res) => {
     }
   });
 
+router.post('/purchasedCourses',validateToken, function(req,res){
+    const userId = req.user.username
+    const purchasedCourses = User.findOne({username:userId})
+    .then((user)=>{
+        res.json(user.purchasedCourses)
+    }).catch((err)=>{
+        res.json({error:err})
+    })
+})
 
 module.exports = router

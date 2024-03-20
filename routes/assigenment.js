@@ -6,10 +6,11 @@ const multer = require('multer'); // Assuming you're using multer for file uploa
 // Configure multer storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'public/assigenment/'); // Specify the directory where files will be stored
+    cb(null, './Assignments'); // Specify the directory where files will be stored
   },
   filename: (req, file, cb) => {
-    cb(null, new Date().toISOString() + '-' + file.originalname); // Use a unique filename
+    const safeFilename = new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname;
+    cb(null,  safeFilename); // Use a unique filename
   },
 });
 

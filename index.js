@@ -10,6 +10,10 @@ const mailer = require('./routes/mail')
 const cors = require('cors');
 const assignmentRoutes = require('./routes/assigenment');
 const nodemailer = require('nodemailer');
+const http = require('http');
+const socketIo = require('socket.io');
+const server = http.createServer(app);
+const io = socketIo(server);
 
 app.use(express.json());
 app.use(cors());
@@ -20,6 +24,7 @@ app.use('/api', assignmentRoutes);
 app.use('/comment', commentRouter);
 app.use('/teacher',teacherRouter);
 app.use('/admin',adminRouter);
+app.use('/assignment',assignmentRoutes);
 app.use(express.urlencoded({ extended: true }));
 // app.use('/mail', mailer);
 
@@ -27,8 +32,8 @@ app.use(express.urlencoded({ extended: true }));
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'abhaymeghnathi44@gmail.com',
-      pass: 'SUPER***123'
+      user: 'asdashdhada@gmail.com',
+      pass: 'ssfsfsSdfsffUsdfsfPfsdfsfdR***@1344342e4fgertertetre'
     }
   });
   const sendWelcomeEmail = (userEmail) => {
@@ -53,6 +58,7 @@ const transporter = nodemailer.createTransport({
      const email = req.body.email;
      sendWelcomeEmail(email);
       res.send(email);
+      console.log('email sent')
     });
 
 

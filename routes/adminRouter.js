@@ -1,7 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const validateToken = require('../Middleware/AuthMiddleware');
 const Admin = require('../Models/admin');
 const {sign} = require('jsonwebtoken');
+const adminvalidate = require('../Middleware/adminAuth');
 const router = express.Router();
 
 // Route to handle admin creation
@@ -72,6 +74,23 @@ router.post('/login', async (req, res) => {
       console.error('Failed to fetch admins:', error);
       res.status(500).json({ error: 'Failed to fetch teachers' });
     }
+  })
+
+  router.post("/isAdmin",adminvalidate, async function(req,res){
+    const Token = req.header('accessToken')
+    const email = req.user.email
+    const id = req.user.id
+  try {
+    const admin = await Admin.findOne({_id:id})
+    if(admin){
+      res.json(admin)
+    }else{
+      res.json('admin not found')
+    }
+  } catch (error) {
+    res.status(400).json('failed to gather the info of admin')
+  }    
+
   })
 
 module.exports = router;
