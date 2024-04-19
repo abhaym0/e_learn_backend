@@ -83,9 +83,9 @@ router.post('/login', async (req, res) => {
   try {
     const admin = await Admin.findOne({_id:id})
     if(admin){
-      res.json(admin)
+      res.json(1)
     }else{
-      res.json('admin not found')
+      res.json(0)
     }
   } catch (error) {
     res.status(400).json('failed to gather the info of admin')

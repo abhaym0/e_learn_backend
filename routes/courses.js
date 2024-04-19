@@ -20,7 +20,7 @@ router.post('/create', async function (req, res) {
       title: title,
       them: them,
       instructor: instructor,
-      accsess: accsess,
+      accsess: accsess || false,
       syllabus: syllabus || "", // Include syllabus field with default value
       quizzes: quizzes || [], // Include quizzes field with default value as an empty array
       videoLectures: videoLectures || [] // Include videoLectures field with default value as an empty array

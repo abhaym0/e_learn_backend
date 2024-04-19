@@ -79,7 +79,7 @@ router.post('/authentication',validateToken,function(req,res){
 router.post('/profile',validateToken,async function(req,res){
     const userSName = req.user.username
     const gotUser = await User.findOne({username:userSName})
-    res.json(gotUser);
+    res.json(gotUser)
 });
 
 router.delete('/:id', async (req, res) => {
