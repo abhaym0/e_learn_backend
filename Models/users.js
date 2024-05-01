@@ -35,7 +35,14 @@ const userSchema = new Schema({
             courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
             courseName:String,
         }
-    ]
+    ],
+    isVerified:{
+        type:Boolean,
+        default:false
+    },
+    verificationToken:{
+        type: String
+    }
     // Add more fields as needed for other dashboard features
 });
 

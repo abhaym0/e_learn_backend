@@ -124,4 +124,14 @@ router.post('/purchase', validateToken, async function (req, res) {
   }
 })
 
+router.get('/:category', async function (req, res) {
+  const category = req.params.category;
+  // console.log(req.params.category)
+  const courses = await Course.find({ them: category });
+  res.json(courses)
+  console.log(courses);
+  console.log(category);
+})
+
 module.exports = router
+

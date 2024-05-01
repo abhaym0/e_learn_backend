@@ -41,7 +41,7 @@ const courseSchema = new Schema({
     videoLectures: [{
         title: String,
         url: String,
-        dp: String 
+        dp: String
     }],
     comments: [{
         user: {
@@ -57,7 +57,11 @@ const courseSchema = new Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    category: {
+        type: String,
+        required: false
+    }
 });
 
 module.exports = mongoose.model("Course", courseSchema);

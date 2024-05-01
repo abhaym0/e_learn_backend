@@ -17,7 +17,7 @@ const io = socketIo(server);
 
 app.use(express.json());
 app.use(cors());
-app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/user",usersRouter);
 app.use("/courses",coursesRouter);
 app.use('/api', assignmentRoutes);
@@ -25,21 +25,22 @@ app.use('/comment', commentRouter);
 app.use('/teacher',teacherRouter);
 app.use('/admin',adminRouter);
 app.use('/assignment',assignmentRoutes);
-app.use(express.urlencoded({ extended: true }));
 // app.use('/mail', mailer);
 
 
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
+    secure:true,
+    port:465,
     auth: {
-      user: 'asdashdhada@gmail.com',
-      pass: 'ssfsfsSdfsffUsdfsfPfsdfsfdR***@1344342e4fgertertetre'
+      user: '',
+      pass: ''
     }
   });
   const sendWelcomeEmail = (userEmail) => {
       const mailOptions = {
         from: 'abhaymeghnathi44@gmail.com',
-        to: userEmail,
+        to: 'abhaygiri978@gmail.com',
         subject: 'Welcome to Our Application',
         html: '<p>Hello, Welcome to our application!</p>'
       };
@@ -59,6 +60,11 @@ const transporter = nodemailer.createTransport({
      sendWelcomeEmail(email);
       res.send(email);
       console.log('email sent')
+    });
+
+    app.get('/testmail', (req, res) => {
+      sendWelcomeEmail('abhaygiri978@gmail.com');
+      res.send('Test email sent!');
     });
 
 
